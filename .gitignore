@@ -1,2 +1,5 @@
+.ipynb_checkpoints
 __pycache__
 data.npz
+images.npy
+Untitled.ipynb

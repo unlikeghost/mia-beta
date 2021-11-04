@@ -8,9 +8,8 @@
 
     @author: Jesus Alan Hernandez Galvan 
 """
-
-
 import numpy as np
+from numpy.core.fromnumeric import mean
 from tqdm import tqdm
 from librosa.feature import mfcc
 
@@ -46,29 +45,27 @@ def mfccExtract(features: np.array, subjects: np.array) -> np.array:
 
     """
 
-    subjectsMfcc = list()
-
     infoValues= lambda subject: SUBJECTSINFO[subject]
 
     infoSubject = list(map(infoValues, subjects))
+
+    subjectsMfcc = list()
 
     for index, feature in tqdm(enumerate(features)):
 
         for subindex in range(0, 8):
 
             mfccFeatures = mfcc(feature[subindex], sr = SAMPLERATE, n_fft = 1024)
-        
-            # mean = np.mean(mfccFeatures, axis = 1)
-
-            # print(mean.shape)
             
             subjectsMfcc.append(mfccFeatures)
         
         means = np.mean(subjectsMfcc, axis = (0, 2))
 
-        infoSubject[index] = np.append(infoSubject[index].T, means.T)
-    
-        subjectsMfcc.clear()     
+        infoSubject[index] = np.append(infoSubject[index].T, means.T)  
+
+        subjectsMfcc.clear()
+
+        del means 
 
     return np.array(infoSubject)
 

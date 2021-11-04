@@ -138,10 +138,9 @@ def channelsExtract() -> dict:
                 
                 all_subjects.extend(subjects)
             
-            except Exception as e:
+            except:
 
-                print(e)
-                print(f"Error {subject} session {session} passed\n")
+                pass
 
     return dict(features = np.array(all_features),
                 targets = np.array(all_targets),
@@ -150,5 +149,3 @@ def channelsExtract() -> dict:
 if __name__ == "__main__":
 
     channelsExtract()
-
-

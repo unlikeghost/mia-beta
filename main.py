@@ -11,8 +11,8 @@
 
 import sys
 import os
-import mia
 import time
+import mia
 
 MENU = {"Preprocessing data": mia.preprocessing,
         "Train model": mia.trainmodel,
@@ -53,14 +53,13 @@ while True:
 
             MENU[key]()
     
-    except Exception as e:
-
-        print(e)
+    except ValueError:
 
         print("Input must be a number, try again")
 
         time.sleep(1)
 
-        #method = SUPPORTED_OS.get(sys.platform, lambda: "OS is not supported")
+        method = SUPPORTED_OS.get(sys.platform, lambda: "OS is not supported")
 
-        #os.system(method)
+        os.system(method)
+        

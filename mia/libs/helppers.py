@@ -16,11 +16,11 @@ class ReadFile:
 
     def readDat(self) -> np.array:
 
-        return np.load(self.file, allow_pickle = True)
+        return np.load(self.file, allow_pickle = True,  mmap_mode = "r")
     
     def readNumpy(self) -> np.object:
 
-        return np.load(self.file)
+        return np.load(self.file, mmap_mode = "r")
 
 class SaveFile:
 
@@ -35,3 +35,4 @@ class SaveFile:
     def saveNpz(self, arrays: dict):
 
         np.savez(self.filename, **arrays)
+    
