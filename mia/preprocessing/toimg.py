@@ -4,11 +4,13 @@ import numpy as np
 from tqdm import tqdm
 from pyts.image import GramianAngularField
 
-TRANSFORMER = GramianAngularField(image_size = 0.15)
+TRANSFORMER = GramianAngularField(image_size = 0.30,)
 
 def toimg(array: np.array):
 
-    return TRANSFORMER.transform(array)
+    img = TRANSFORMER.transform(array)
+
+    return np.add.reduce(img)
 
 def savearrays(tempfile: str, savepath: str) -> None:
 

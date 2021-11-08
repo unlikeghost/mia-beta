@@ -55,7 +55,8 @@ def preprocessing() -> None:
     spliting = splitData(data["features"], constants.TEMPFILE)
 
     print("\nConverting to img...\n")
-    saveimages = savearrays(constants.TEMPFILE, constants.TEMPIMAGE)
+    saveimages = savearrays(constants.TEMPFILE,
+                            constants.TEMPIMAGE)
 
     print("\nMerging data...\n")
     merge = mergearray(constants.TEMPIMAGE)
@@ -63,7 +64,9 @@ def preprocessing() -> None:
     print("\nSaving data...\n")
     cleanData = SaveFile(constants.CLEANDATAFILE)
 
-    savedata = dict(targets = data["targets"], mfcc = subjectsMfcc)
+    savedata = dict(targets = data["targets"],
+                    mfcc = subjectsMfcc,
+                    eeg = data["features"] )
 
     cleanData.saveNpz(savedata)
 
